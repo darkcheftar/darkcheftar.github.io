@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sliding puzzle</title>
+    <script src="https://unpkg.com/d3@5.7.0/dist/d3.min.js"></script>
     <style>
         body{
             background-color: antiquewhite;
@@ -16,6 +17,7 @@
             height: 100px;
             width:100px;
             font-size: 100px;
+            user-select: none;
         }
         #box{
             top:calc(50vh - 150px);
@@ -29,41 +31,64 @@
         }
         .empty{
             background-color: transparent;
+            color:transparent;
         }
     </style>
 </head>
 <body>
     <div id='box'>
-        <div class="tiles" data-x='0' data-y='0'>1</div>
-        <div class="tiles" data-x='0' data-y='1'>2</div>
-        <div class="tiles" data-x='0' data-y='2'>3</div>
-        <div class="tiles" data-x='1' data-y='0'>4</div>
-        <div class="tiles" data-x='1' data-y='1'>5</div>
-        <div class="tiles" data-x='1' data-y='2'>6</div>
-        <div class="tiles" data-x='2' data-y='0'>7</div>
-        <div class="tiles" data-x='2' data-y='1'>8</div>
-        <div class="tiles empty" data-x='2' data-y='2'></div>
     </div>
     <script defer>
-        const doit = (e)=>{
-            if(!e.target.classList.contains('empty')){
-            empty = document.getElementsByClassName('empty')[0];
-            ex = empty.dataset.x
-            ey = empty.dataset.y
-            ax = e.target.dataset.x
-            ay = e.target.dataset.y
-            if((ex==ax && Math.abs(ay-ey)==1) || (ey==ay && Math.abs(ax-ex)==1)){
-            empty.innerText = e.target.innerText;
-            empty.classList.remove('empty');
-            e.target.innerText = ""
-            e.target.classList.add('empty');
-            console.log(e.target.dataset.x,e.target.dataset.y)
+        const isValid = (x)=>{
+            inv = 0;
+            n = x.length;
+            k = x.indexOf(0);
+            y = x.filter(d=>d>0);
+            for(let i=0;i<x.length;i++){
+                for(let j=i+1;j<x.length;j++){
+                    if(y[i]>y[j]){
+                        inv++;
+                    }
+                }
+            }
+            return ((n%2 && inv%2 == 0) || ((n%2==0) && (k%2 == inv%2)))
+            
         }
+    const validState = ()=>{
+        data = [...Array(9).keys()].sort(()=> { return 0.5 - Math.random() });
+        while(!isValid(data)){
+            data = [...Array(9).keys()].sort(()=> { return 0.5 - Math.random() });
+        }
+        return data;
     }
+    data = validState()
+    const create = (data) =>{
+        boxes = d3.select('#box')
+          .selectAll(".tiles")
+          .data(data);
+
+          boxes
+          .enter()
+          .append('div')
+          .merge(boxes)
+          .attr('class',d=> d!='0'?'tiles':'tiles empty')
+          .text(d=>d?d:0)
+          .on('click', (d, i, e)=>{
+                data = e.map(k=>k.innerText);
+                empty = data.indexOf('0')
+                ex = empty%3;
+                ey = Math.floor(empty/3);
+                ax = i%3;
+                ay = Math.floor(i/3);
+                if((ex==ax && Math.abs(ay-ey)==1) || (ey==ay && Math.abs(ax-ex)==1)){
+                    temp = data[i]
+                    data[i] = data[empty]
+                    data[empty] = temp
+                    create(data)
+                }
+            });
     }
-        tiles = document.getElementsByClassName('tiles')
-        for(let i=0;i<tiles.length;i++){
-            tiles[i].addEventListener('click',doit);}
+    create(data);
     </script>
 </body>
 </html>
