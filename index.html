@@ -1,312 +1,1038 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google-adsense-account" content="ca-pub-1121650247288513">
-    <title>Mallidi Tarun Reddy</title>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mallidi Tarun Reddy // MTR.OS Terminal Portfolio</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tone.js for Sci-Fi UI Synthesized Audio Feedback -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
-    <!-- Favicons -->
-    <link rel="icon" href="./assets/logo.png" type="image/x-icon" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="./assets/logo.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./assets/logo.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="./assets/logo.png"
-    />
-    <link rel="manifest" href="./assets/site.webmanifest" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              black: '#07090e',
+              panel: '#0c1017',
+              card: '#101622',
+              cardHover: '#141d2e',
+              border: '#1b263b',
+              borderGlow: '#00f0ff',
+              neonCyan: '#00f0ff',
+              neonGreen: '#00ff9d',
+              neonPink: '#ff0055',
+              dimText: '#879bb4',
+              accent: '#38bdf8'
+            }
+          },
+          fontFamily: {
+            mono: ['"Fira Code"', 'monospace'],
+            sans: ['"Inter"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif']
+          },
+          animation: {
+            'pulse-fast': 'pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'radar-spin': 'spin 8s linear infinite',
+            'glitch': 'glitch 2s infinite'
+          }
+        }
+      }
+    }
+  </script>
 
-    <meta name="author" content="Mallidi Tarun Reddy" />
-    <meta
-      name="description"
-      content="Tarun's (darkcheftar) personal website created with glassmorphism UI"
-    />
-    <meta
-      name="keywords"
-      content="Developer, Portfolio, HTML, CSS, JS, GlassMorphic, Glassmorphic, GlassMorphism, Glassmorphism, UI"
-    />
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    
+    body {
+      background-color: #07090e;
+      color: #e2e8f0;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
 
-    <meta name="referrer" content="no-referrer-when-downgrade" />
+    /* Subdued CRT scanline grid background */
+    .cyber-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 240, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 240, 255, 0.035) 1px, transparent 1px);
+    }
 
-    <link rel="stylesheet" href="./assets/css/all.min.css" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <script defer src="./assets/js/all.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-    />
-    <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
-    <script src="./assets/js/repo-card.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!--Animation-->
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  </head>
-  <body>
-    <!-- <div id="progress">
-      <span id="progress-value"></span>
-    </div> -->
+    .hud-border {
+      position: relative;
+      border: 1px solid rgba(0, 240, 255, 0.16);
+      transition: all 0.3s ease;
+    }
 
-    <section>
-      <div class="container">
-        <div id="top" class="page-scroll"></div>
-        <!-- Navbar -->
-        <header>
-          <a href="#top" class="logo">Tarun.</a>
-          <ul>
-            <li><a class="active page" href="#top" id="home-btn">Home</a></li>
-            <li><a href="#about" class="page" id="about-btn">About Me</a></li>
-            <li><a href="#projects" class="page" id="project-btn">Projects</a></li>
-            <li>
-              <a href="#contact" class="enabledisable page" id="contact-btn"
-                >Contact</a
-              >
-            </li>
-          </ul>
-        </header>
+    .hud-border:hover {
+      border-color: rgba(0, 240, 255, 0.45);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.08);
+    }
 
-        <!-- Main Content -->
-        <div class="content">
-          <div class="column">
-            <h2 data-aos="fade-down" data-aos-duration="1000">Hi all, I'm Tarun<span class="wave">👋</span></h2>
-            <p data-aos="fade-right" data-aos-duration="1000">
-              I love software development and capture the flags. I
-              know Web Dev too! Want to discuss
-              regarding any project or just want to say a Hi? I am always
-              available to listen to you.
-            </p>
-            <a href="mailto:darkcheftar.connect@gmail.com" data-aos="fade-right" data-aos-duration="1000">Contact Me</a>
+    /* Corner accents for futuristic HUD cards */
+    .hud-bracket::before, .hud-bracket::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      pointer-events: none;
+    }
+    .hud-bracket::before {
+      top: -1px;
+      left: -1px;
+      border-top: 2px solid #00f0ff;
+      border-left: 2px solid #00f0ff;
+    }
+    .hud-bracket::after {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 2px solid #00f0ff;
+      border-right: 2px solid #00f0ff;
+    }
+
+    /* Scanline overlay */
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.18) 50%);
+      background-size: 100% 4px;
+      opacity: 0.45;
+    }
+
+    /* Custom Terminal Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07090e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1b263b;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00f0ff;
+    }
+
+    .neon-glow-cyan {
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.35);
+    }
+    
+    .neon-glow-green {
+      box-shadow: 0 0 12px rgba(0, 255, 157, 0.35);
+    }
+
+    /* Subtle cursor blink */
+    @keyframes cursor-blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    .cli-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 15px;
+      background-color: #00f0ff;
+      animation: cursor-blink 0.9s infinite;
+      vertical-align: middle;
+      margin-left: 3px;
+    }
+  </style>
+</head>
+<body class="cyber-grid relative min-h-screen text-slate-200 antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+
+  <!-- Scanlines CRT Overlay -->
+  <div class="scanlines"></div>
+
+  <!-- Ambient Backdrop Glows -->
+  <div class="fixed top-0 left-1/4 -z-10 h-96 w-96 rounded-full bg-cyan-600/10 blur-[120px] pointer-events-none"></div>
+  <div class="fixed top-1/2 right-10 -z-10 h-96 w-96 rounded-full bg-blue-600/10 blur-[140px] pointer-events-none"></div>
+
+  <header class="sticky top-0 z-50 border-b border-cyber-border/80 bg-cyber-black/85 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Logo and Identity Badge -->
+      <a href="#" class="flex items-center space-x-3 group" onclick="playBeep(640, 0.05)">
+        <div class="w-9 h-9 rounded bg-cyan-950/60 border border-cyan-400/40 flex items-center justify-center text-cyan-400 group-hover:border-cyan-400 group-hover:neon-glow-cyan transition-all">
+          <i class="fa-solid fa-cube text-base"></i>
+        </div>
+        <div class="flex flex-col">
+          <div class="font-mono text-sm tracking-wider font-bold text-white flex items-center gap-1.5">
+            MTR <span class="text-cyan-400">//</span> DARKCHEF<span class="text-cyan-400">TAR</span>
           </div>
-          <div class="img">
-            <img src="./assets/logo.png" alt="Hello There!!" data-aos="fade-up-right" data-aos-duration="1000"/>
+          <div class="font-mono text-[10px] tracking-widest text-slate-400 uppercase">
+            CYBER GLYPH // ARCHITECT
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop HUD Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-1 font-mono text-xs">
+        <a href="#overview" class="px-3 py-1.5 rounded text-cyan-300 bg-cyan-950/40 border border-cyan-500/30 hover:bg-cyan-900/40 hover:text-cyan-200 transition-colors" onclick="playBeep(880, 0.04)">
+          // Overview
+        </a>
+        <a href="#projects" class="px-3 py-1.5 rounded text-slate-300 hover:text-cyan-300 hover:bg-cyber-panel transition-colors" onclick="playBeep(880, 0.04)">
+          // Systems & Projects
+        </a>
+        <a href="#matrix" class="px-3 py-1.5 rounded text-slate-300 hover:text-cyan-300 hover:bg-cyber-panel transition-colors" onclick="playBeep(880, 0.04)">
+          // Tech Matrix
+        </a>
+        <a href="#terminal-section" class="px-3 py-1.5 rounded text-slate-300 hover:text-cyan-300 hover:bg-cyber-panel transition-colors" onclick="playBeep(880, 0.04)">
+          // Terminal
+        </a>
+        <a href="#connect" class="px-3 py-1.5 rounded text-slate-300 hover:text-cyan-300 hover:bg-cyber-panel transition-colors" onclick="playBeep(880, 0.04)">
+          // Connect
+        </a>
+      </nav>
+
+      <!-- System Telemetry Status Indicator & Audio Toggle -->
+      <div class="flex items-center space-x-4">
+        <!-- Audio Synth FX Toggle -->
+        <button id="audio-toggle-btn" onclick="toggleAudio()" title="Toggle Synthesizer Sound Effects" class="hidden sm:flex items-center space-x-1.5 px-2.5 py-1 text-xs font-mono rounded bg-cyber-card border border-cyber-border hover:border-cyan-500 text-slate-400 hover:text-cyan-300 transition-colors">
+          <i id="audio-icon" class="fa-solid fa-volume-xmark text-slate-500"></i>
+          <span id="audio-label" class="text-[11px]">SFX: OFF</span>
+        </button>
+
+        <!-- Live Node Status Pill -->
+        <div class="flex items-center space-x-2.5 px-3 py-1 rounded-full bg-cyber-panel/90 border border-emerald-500/40">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+          </span>
+          <div class="font-mono text-[11px] leading-none">
+            <span class="text-slate-400">SYS.ONLINE</span>
+            <span class="text-emerald-400 font-semibold ml-1">[LIVE NODE]</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-16" id="overview">
+
+    <!-- Top Telemetry Micro Bar -->
+    <div class="flex flex-wrap items-center justify-between text-[11px] font-mono text-slate-400 border-b border-cyber-border pb-3 gap-2">
+      <div class="flex items-center space-x-3">
+        <span class="text-cyan-400"><i class="fa-solid fa-terminal mr-1"></i> SYS.LOG: SHELL-7720</span>
+        <span class="text-slate-600">|</span>
+        <span class="text-emerald-400"><i class="fa-solid fa-shield-halved mr-1"></i> STATUS: SECURE</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span>DEPLOYMENT_READY: <span class="text-cyan-300 font-semibold">TRUE</span></span>
+        <span class="text-slate-600">|</span>
+        <span>LATENCY: <span id="ping-display" class="text-emerald-400 font-semibold">18ms</span></span>
+        <span class="text-slate-600">|</span>
+        <span>UID: <span class="text-slate-300">0xDARKCHEF</span></span>
+      </div>
+    </div>
+
+    <!-- Hero Two-Column Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Human Profile, Pitch, CTAs, HUD Counter Strips -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <div class="space-y-2">
+          <div class="inline-flex items-center gap-2 font-mono text-xs text-emerald-400 tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            // INITIALIZING HUMAN PROFILE
+          </div>
+          <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-none">
+            MALLIDI TARUN<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-teal-200">
+              REDDY
+            </span>
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed pt-2 max-w-xl font-sans">
+            Full-Stack Software Engineer & Creative Technologist. Architecting resilient interfaces, 
+            decentralized toolchains, and interactive presentation mechanics with an obsessive eye for detail.
+          </p>
+        </div>
+
+        <!-- Primary Actions -->
+        <div class="flex flex-wrap items-center gap-3 pt-1">
+          <a href="#projects" class="px-5 py-2.5 rounded font-mono text-xs font-semibold bg-cyan-400 text-cyber-black hover:bg-cyan-300 hover:neon-glow-cyan transition-all flex items-center gap-2" onclick="playBeep(700, 0.08)">
+            <i class="fa-solid fa-code-fork"></i>
+            [>] INSPECT REPOSITORIES
+          </a>
+          
+          <a href="#connect" class="px-5 py-2.5 rounded font-mono text-xs font-semibold bg-cyber-card border border-cyan-500/40 text-cyan-300 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all flex items-center gap-2" onclick="playBeep(850, 0.05)">
+            <i class="fa-solid fa-satellite-dish"></i>
+            INITIALIZE CONTACT
+          </a>
+
+          <button onclick="handleDownloadIntel()" class="px-4 py-2.5 rounded font-mono text-xs font-medium bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white transition-all flex items-center gap-2">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            DOWNLOAD INTEL
+          </button>
+        </div>
+
+        <!-- Metric HUD Strip (4 columns as in reference image) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
+          <!-- Metric 1: Public Repos -->
+          <div class="hud-border hud-bracket p-3 bg-cyber-card/70 rounded">
+            <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">PUBLIC REPOS</div>
+            <div class="font-mono font-bold text-2xl text-cyan-300 mt-1">87+</div>
+            <div class="font-mono text-[9px] text-cyan-500/80 mt-0.5">ACTIVE CODEBASES</div>
+          </div>
+
+          <!-- Metric 2: Academic Kernel -->
+          <div class="hud-border hud-bracket p-3 bg-cyber-card/70 rounded">
+            <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">ACADEMIC KERNEL</div>
+            <div class="font-mono font-bold text-2xl text-white mt-1">IIIT</div>
+            <div class="font-mono text-[9px] text-slate-400 mt-0.5">COMP SCI / ENGR</div>
+          </div>
+
+          <!-- Metric 3: Hackathon Wins -->
+          <div class="hud-border hud-bracket p-3 bg-cyber-card/70 rounded">
+            <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">HACKATHONS</div>
+            <div class="font-mono font-bold text-2xl text-emerald-400 mt-1">2x</div>
+            <div class="font-mono text-[9px] text-emerald-500/80 mt-0.5">PODIUM WINS</div>
+          </div>
+
+          <!-- Metric 4: Coordinates -->
+          <div class="hud-border hud-bracket p-3 bg-cyber-card/70 rounded">
+            <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">COORDINATES</div>
+            <div class="font-mono font-bold text-2xl text-white mt-1">PUN</div>
+            <div class="font-mono text-[9px] text-slate-400 mt-0.5">INDIA [18.52° N]</div>
           </div>
         </div>
 
-        <!-- 2nd Section -->
-        <section id="about" class="content page-scroll" style="justify-content: space-around">
-          <div class="img" data-aos="fade-right" data-aos-duration="1000">
-            <img
-              src="https://media.giphy.com/media/7wA0YhMXvDBhTckOGM/source.gif?cid=790b7611b6565a9092ee51eeee34015858a0783fd77b6f31&rid=source.gif&ct=s"
-              alt="APS-OCTOCAT"
-            />
+      </div>
+
+      <!-- Right Column: Interactive Terminal Box & Core Philosophy Callout -->
+      <div class="lg:col-span-5 space-y-4" id="terminal-section">
+        
+        <!-- Interactive Terminal Node Window -->
+        <div class="hud-border rounded-lg bg-cyber-card/95 overflow-hidden shadow-2xl border border-cyan-500/30">
+          
+          <!-- Terminal Titlebar -->
+          <div class="px-4 py-2.5 bg-cyber-panel border-b border-cyber-border flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+              <span class="text-xs font-mono text-slate-400 ml-2">mtr-node-shell v4.0</span>
+            </div>
+            <div class="text-[10px] font-mono text-cyan-400 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+              TTY: ONLINE
+            </div>
           </div>
-          <div class="column-2">
-            <svg
-              xmlns="//www.w3.org/2000/svg"
-              version="1.1"
-              class="svg-filters"
-              style="display: none"
-            >
-              <defs>
-                <filter id="marker-shape">
-                  <feTurbulence
-                    type="fractalNoise"
-                    baseFrequency="0 0.15"
-                    numOctaves="1"
-                    result="warp"
-                  />
-                  <feDisplacementMap
-                    xChannelSelector="R"
-                    yChannelSelector="G"
-                    scale="30"
-                    in="SourceGraphic"
-                    in2="warp"
-                  />
-                </filter>
-              </defs>
-            </svg>
-            <h2 style="font-weight: 550">
-              <span class="low-highlight-pink">What I do</span>
-            </h2>
-            <h3 style="font-size: 24px; color: #444444; font-weight: 1">
-              I love all aspects of technology and want to explore as much as I
-              can!
-            </h3>
-            <div class="dev-icons">
-              <ul>
-		<li class="software-skill-inline html5">
-                  <i class="devicon-html5-plain"></i>
-                  <p>HTML5</p>
-                </li>
-                <li class="software-skill-inline css3">
-                  <i class="devicon-css3-plain"></i>
-                  <p>CSS3</p>
-                </li>
-                <li class="software-skill-inline javascript">
-                  <i class="devicon-javascript-plain"></i>
-                  <p>JavaScript</p>
-                </li>
-		<li class="software-skill-inline linux">
-                  <i class="devicon-typescript-plain"></i>
-                  <p>TypeScript</p>
-		</li>
-		<li class="software-skill-inline linux">
-                  <i class="devicon-svelte-plain"></i>
-                  <p>Svelte</p>
-                </li>
-                <li class="software-skill-inline python">
-                  <i class="devicon-python-plain"></i>
-                  <p>Python</p>
-                </li>
-                <li class="software-skill-inline c">
-                  <i class="devicon-c-plain"></i>
-                  <p>C</p>
-                </li>
-                <li class="software-skill-inline cplusplus">
-                  <i class="devicon-cplusplus-plain"></i>
-                  <p>C++</p>
-                </li>
-                <li class="software-skill-inline flask">
-                  <i class="devicon-java-plain"></i>
-                  <p>Java</p>
-                </li>
-		<li class="software-skill-inline linux">
-                  <i class="devicon-react-original"></i>
-                  <p>React</p>
-                </li>
-		<li class="software-skill-inline linux">
-                  <i class="devicon-jquery-plain"></i>
-                  <p>JQuery</p>
-                </li>
-              </ul>
+
+          <!-- Terminal Screen Body -->
+          <div id="terminal-body" class="p-4 font-mono text-xs text-slate-300 space-y-2.5 max-h-80 overflow-y-auto leading-relaxed select-text">
+            <div>
+              <span class="text-cyan-400 font-semibold">darkcheftar@mtr-node</span>:<span class="text-slate-400">~$</span> <span class="text-white">whoami</span>
+              <div class="text-slate-400 pl-3 mt-0.5">> Mallidi Tarun Reddy // Full-Stack Architect</div>
             </div>
 
             <div>
-              <p style="color: #444444; font-size: 20px">
-                ⚡
-                Develop Softwares
-              </p>
-              <p style="color: #444444; font-size: 20px">
-                ⚡ Play CTFs
-              </p>
+              <span class="text-cyan-400 font-semibold">darkcheftar@mtr-node</span>:<span class="text-slate-400">~$</span> <span class="text-white">cat skills.json</span>
+              <div class="text-emerald-300 pl-3 mt-0.5">[ "Full-Stack Web", "Web3 / DeFi", "Creative Dev", "Cloud Tooling" ]</div>
             </div>
+
+            <div>
+              <span class="text-cyan-400 font-semibold">darkcheftar@mtr-node</span>:<span class="text-slate-400">~$</span> <span class="text-white">echo $LOCATION</span>
+              <div class="text-slate-300 pl-3 mt-0.5">Pune, Maharashtra, India</div>
+            </div>
+
+            <div>
+              <span class="text-cyan-400 font-semibold">darkcheftar@mtr-node</span>:<span class="text-slate-400">~$</span> <span class="text-white">git log -1 --pretty=format:"%s"</span>
+              <div class="text-cyan-300/90 pl-3 mt-0.5">"feat: optimize engine telemetry & add serverless relay"</div>
+            </div>
+
+            <div>
+              <span class="text-cyan-400 font-semibold">darkcheftar@mtr-node</span>:<span class="text-slate-400">~$</span> <span class="text-white">curl -s mtr.live/status</span>
+              <div class="text-amber-300 pl-3 mt-0.5">{"status": "READY_FOR_DEPLOYMENT", "coffee_level": "94%"}</div>
+            </div>
+
+            <!-- Dynamic Output Container -->
+            <div id="cli-history" class="space-y-2"></div>
+
+            <!-- Active Interactive CLI Input Line -->
+            <form id="cli-form" onsubmit="executeCommand(event)" class="flex items-center gap-1.5 pt-1">
+              <span class="text-cyan-400 font-semibold whitespace-nowrap">darkcheftar@mtr-node</span>:<span class="text-slate-400">~$</span>
+              <input type="text" id="cli-input" autocomplete="off" spellcheck="false" 
+                placeholder="type 'help' or 'projects'..." 
+                class="w-full bg-transparent text-white font-mono text-xs focus:outline-none caret-cyan-400 placeholder:text-slate-600">
+            </form>
           </div>
-        </section>
-
-
-        <!-- 4th Section -->
-        <svg
-          xmlns="//www.w3.org/2000/svg"
-          version="1.1"
-          class="svg-filters"
-          style="display: none"
-        >
-          <defs>
-            <filter id="marker-shape">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0 0.15"
-                numOctaves="1"
-                result="warp"
-              />
-              <feDisplacementMap
-                xChannelSelector="R"
-                yChannelSelector="G"
-                scale="30"
-                in="SourceGraphic"
-                in2="warp"
-              />
-            </filter>
-          </defs>
-        </svg>
-        <div
-          id="projects"
-          class="mob-h2 page-scroll"
-          style="font-size: 56px; font-weight: 700; margin-top: 50px"
-        >
-          <span class="low-highlight-cyan">Projects</span>
-        </div>
-        <div class="projects" data-aos="fade-up" data-aos-duration="1500">
-          <div class="repo-card" data-repo="darkcheftar/BMeet"></div>
-          <div class="repo-card" data-repo="darkcheftar/boolean-retrival-simulation"></div>
-          <div
-            class="repo-card"
-            data-repo="darkcheftar/umbrella-customiser"
-          ></div>
-          <div
-            class="repo-card"
-            data-repo="darkcheftar/Mario-Game"
-          ></div>
-          <div
-            class="repo-card"
-            data-repo="darkcheftar/python-projects"
-          ></div>
-          <div class="repo-card" data-repo="darkcheftar/flutter-qrcode-collector"></div>
+          
+          <!-- Terminal Footer Bar -->
+          <div class="px-3 py-1 bg-cyber-black/90 border-t border-cyber-border text-[10px] font-mono text-slate-500 flex justify-between">
+            <span>BUFF: 5112 1X</span>
+            <span>TYPE 'help' FOR CMDS</span>
+          </div>
         </div>
 
-        <h2  id="contact"
-          class="mob-connect enabledisable page-scroll"
-          style="font-size: 40px; font-weight: 700; margin-top: 50px"
-        >
-          <span class="low-highlight-hazeskin">Connect with me</span>
-        </h2>
-        <ul class="socialsites ">
-          <li>
-            <a href="https://github.com/darkcheftar"><i class="fab fa-github"></i></a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/mallidi-tarun-reddy/"><i class="fab fa-linkedin"></i></a>
-          </li>
-          <li>
-            <a href="https://codepen.io/darkcheftar"><i class="fab fa-codepen"></i></a>
-          </li>
-        </ul>
+        <!-- Primary Philosophy Callout Box -->
+        <div class="hud-border p-4 bg-cyber-panel/80 rounded-lg flex items-start space-x-3.5">
+          <div class="w-8 h-8 rounded bg-cyan-950/70 border border-cyan-500/40 flex items-center justify-center text-cyan-400 flex-shrink-0 mt-0.5">
+            <span class="font-mono font-bold text-sm">{ }</span>
+          </div>
+          <div class="space-y-1">
+            <div class="font-mono text-[10px] text-cyan-400 tracking-wider font-semibold">PRIMARY PHILOSOPHY</div>
+            <p class="font-sans text-xs sm:text-sm text-slate-300 italic leading-snug">
+              "Curious human engineering high-agency systems, exploratory UI paradigms, and zero-latency resilience."
+            </p>
+          </div>
+        </div>
 
-        <!-- Footer -->
       </div>
-    </section>
-    <div class="button-top-div" id="myDIV">
-      <a id="button-top" href="#top"><i class="fas fa-chevron-up"></i></a>
+
     </div>
 
-    <!-- Page Scroll Percentage -->
-    <script src="./assets/js/script.js"></script>
+    <section id="projects" class="space-y-6 pt-4">
+      
+      <!-- Section Header with Link to GitHub -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-cyber-border pb-3 gap-2">
+        <div>
+          <div class="font-mono text-xs text-cyan-400 tracking-wider">// 01 // PRODUCTION ARTIFACTS</div>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-white tracking-tight uppercase mt-0.5">
+            FEATURED SYSTEMS & PROJECTS
+          </h2>
+        </div>
+        <a href="https://github.com/darkcheftar" target="_blank" rel="noopener noreferrer" 
+          class="font-mono text-xs text-cyan-400 hover:text-cyan-300 flex items-center gap-1 group" onclick="playBeep(920, 0.04)">
+          <span>[VIEW ALL 87+ REPOSITORIES]</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+      </div>
 
-    <!-- Page Scroll Up On Click -->
-    <script>
-      //scroller fixed
-      var scrolBtn = document.querySelector("#myDIV");
-      window.addEventListener("scroll", function () {
-        let offset;
-        offset = window.pageYOffset;
-        if (offset > 300) {
-          scrolBtn.style.display = "block";
+      <!-- Projects Grid (4 Key Cards from HUD Blueprint) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        
+        <!-- Project 1: Bomb Finance Dashboard -->
+        <div class="hud-border hud-bracket p-5 rounded-lg bg-cyber-card hover:bg-cyber-cardHover transition-all flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300">
+                SYS_01 // WEB3 DEFI
+              </span>
+              <span class="text-emerald-400 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> LIVE NODE
+              </span>
+            </div>
+
+            <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+              Bomb Finance Dashboard
+            </h3>
+
+            <p class="text-xs text-slate-300 leading-relaxed font-sans">
+              Algorithmic stablecoin telemetry and staking analytics hub. Features real-time contract event pipelines,
+              gas-efficient Web3 listeners, liquidity pool metrics, and automated peg-restoration indicators.
+            </p>
+          </div>
+
+          <div class="pt-5 mt-4 border-t border-cyber-border/70 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap gap-1.5 font-mono text-[10px]">
+              <span class="px-2 py-0.5 rounded bg-cyber-panel text-slate-300 border border-slate-700">TypeScript</span>
+              <span class="px-2 py-0.5 rounded bg-cyber-panel text-slate-300 border border-slate-700">React</span>
+              <span class="px-2 py-0.5 rounded bg-cyber-panel text-slate-300 border border-slate-700">Ethers.js</span>
+            </div>
+            <a href="https://github.com/darkcheftar" target="_blank" rel="noopener noreferrer" 
+              class="font-mono text-xs text-cyan-400 hover:text-cyan-200 flex items-center gap-1" onclick="playBeep(780, 0.04)">
+              <span>$ git inspect</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2: Serverless Email Relay Matrix -->
+        <div class="hud-border hud-bracket p-5 rounded-lg bg-cyber-card hover:bg-cyber-cardHover transition-all flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-indigo-950/60 border border-indigo-500/30 text-indigo-300">
+                SYS_02 // SERVERLESS
+              </span>
+              <span class="text-cyan-400 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span> CLOUD RELAY
+              </span>
+            </div>
+
+            <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+              Serverless Email Relay Matrix
+            </h3>
+
+            <p class="text-xs text-slate-300 leading-relaxed font-sans">
+              Zero-backend automated transmission dispatcher utilizing Google Apps Script endpoints to bridge static
+              web-client payloads to authenticated SMTP channels without server hosting overhead.
+            </p>
+          </div>
+
+          <div class="pt-5 mt-4 border-t border-cyber-border/70 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap gap-1.5 font-mono text-[10px]">
+              <span class="px-2 py-0.5 rounded bg-cyber-panel text-slate-300 border border-slate-700">Google Apps Script</span>
+              <span class="px-2 py-0.5 rounded bg-cyber-panel text-slate-300 border border-slate-700">JavaScript</span>
+              <span class="px-2 py-0.5 rounded bg-cyber-panel text-slate-300 border border-slate-700">REST API</span>
+            </div>
+            <a href="https://github.com/darkcheftar" target="_blank" rel="noopener noreferrer" 
+              class="font-mono text-xs text-cyan-400 hover:text-cyan-200 flex items-center gap-1" onclick="playBeep(780, 0.04)">
+              <span>$ git inspect</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3: Mario Game Presentation Engine -->
+        <div class="hud-border hud-bracket p-5 rounded-lg bg-cyber-card hover:bg-cyber-cardHover transition-all flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/30 text-emerald-300">
+                SYS_03 // CREATIVE ENGINE
+              </span>
+              <span class="text-amber-400 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> 2D PHYSICS
+              </span>
+            </div>
+
+            <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+              Mario Game Presentation Engine
+            </h3>
+
+            <p class="text-xs text-slate-300 leading-relaxed font-sans">
+              Unorthodox presentation medium engineered on an interactive 2D canvas platformer. Turns linear slides into
+              game loops where traversal through levels unpacks architectural schematics and technical concepts.
+            </p>
+          </div>
+
+          <div class="pt-5 mt-4 border-t border-cyber-border/70 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap gap-1.5 font-mono text-[10px]">
+              <span class="px-2 py-0.5 rounded bg-cyber-panel text-slate-300 border border-slate-700">Canvas 2D</span>
+              <span class="px-2 py-0.5 rounded bg-cyber-panel text-slate-300 border border-slate-700">JavaScript</span>
+              <span class="px-2 py-0.5 rounded bg-cyber-panel text-slate-300 border border-slate-700">Game Loop</span>
+            </div>
+            <a href="https://github.com/darkcheftar" target="_blank" rel="noopener noreferrer" 
+              class="font-mono text-xs text-cyan-400 hover:text-cyan-200 flex items-center gap-1" onclick="playBeep(780, 0.04)">
+              <span>$ git inspect</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 4: Flutter Algorithmic Pair Engine & WebTrail -->
+        <div class="hud-border hud-bracket p-5 rounded-lg bg-cyber-card hover:bg-cyber-cardHover transition-all flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-fuchsia-950/60 border border-fuchsia-500/30 text-fuchsia-300">
+                SYS_04 // UTILITIES
+              </span>
+              <span class="text-fuchsia-400 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-fuchsia-400"></span> MOBILE/CROSS
+              </span>
+            </div>
+
+            <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+              Flutter Algorithmic Pair Engine & WebTrail
+            </h3>
+
+            <p class="text-xs text-slate-300 leading-relaxed font-sans">
+              Mobile cross-platform utility combining procedural pairing logic with state serialization and clean
+              reactive composition patterns across Android and iOS targets.
+            </p>
+          </div>
+
+          <div class="pt-5 mt-4 border-t border-cyber-border/70 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap gap-1.5 font-mono text-[10px]">
+              <span class="px-2 py-0.5 rounded bg-cyber-panel text-slate-300 border border-slate-700">Dart</span>
+              <span class="px-2 py-0.5 rounded bg-cyber-panel text-slate-300 border border-slate-700">Flutter</span>
+              <span class="px-2 py-0.5 rounded bg-cyber-panel text-slate-300 border border-slate-700">Reactive State</span>
+            </div>
+            <a href="https://github.com/darkcheftar" target="_blank" rel="noopener noreferrer" 
+              class="font-mono text-xs text-cyan-400 hover:text-cyan-200 flex items-center gap-1" onclick="playBeep(780, 0.04)">
+              <span>$ git inspect</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="matrix" class="space-y-6 pt-4">
+      
+      <div>
+        <div class="font-mono text-xs text-cyan-400 tracking-wider">// 02 // ARCHITECTURAL CAPABILITY MATRIX</div>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-white tracking-tight uppercase mt-0.5">
+          ENGINEERING DIALECTS & SYSTEMS
+        </h2>
+      </div>
+
+      <!-- 3-Column HUD Cards for Tech Matrix -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Matrix 1: Frontend Ecosystem -->
+        <div class="hud-border p-5 rounded-lg bg-cyber-card space-y-4">
+          <div class="flex items-center space-x-3 border-b border-cyber-border/80 pb-3">
+            <div class="w-8 h-8 rounded bg-cyan-950/60 border border-cyan-400/30 flex items-center justify-center text-cyan-300">
+              <i class="fa-solid fa-desktop text-sm"></i>
+            </div>
+            <div>
+              <h3 class="font-mono text-sm font-bold text-white">Frontend Ecosystem</h3>
+              <div class="font-mono text-[10px] text-slate-400">CLIENT-SIDE MATRIX</div>
+            </div>
+          </div>
+
+          <!-- Skill Telemetry Meters -->
+          <div class="space-y-3 font-mono text-xs">
+            <div>
+              <div class="flex justify-between text-slate-300 mb-1">
+                <span>REACT // NEXT.JS</span>
+                <span class="text-cyan-400">EXP: 94%</span>
+              </div>
+              <div class="w-full bg-cyber-panel h-1.5 rounded-full overflow-hidden">
+                <div class="bg-cyan-400 h-full rounded-full" style="width: 94%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-slate-300 mb-1">
+                <span>TAILWIND // MODERN CSS</span>
+                <span class="text-cyan-400">EXP: 96%</span>
+              </div>
+              <div class="w-full bg-cyber-panel h-1.5 rounded-full overflow-hidden">
+                <div class="bg-cyan-400 h-full rounded-full" style="width: 96%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-slate-300 mb-1">
+                <span>CANVAS 2D // CREATIVE DEV</span>
+                <span class="text-cyan-400">EXP: PROFICIENT</span>
+              </div>
+              <div class="w-full bg-cyber-panel h-1.5 rounded-full overflow-hidden">
+                <div class="bg-cyan-400 h-full rounded-full" style="width: 86%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="pt-2 flex flex-wrap gap-1 font-mono text-[10px] text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-cyber-panel border border-cyber-border">Vite</span>
+            <span class="px-2 py-0.5 rounded bg-cyber-panel border border-cyber-border">TypeScript</span>
+            <span class="px-2 py-0.5 rounded bg-cyber-panel border border-cyber-border">Responsive UX</span>
+          </div>
+        </div>
+
+        <!-- Matrix 2: Backend & Cloud -->
+        <div class="hud-border p-5 rounded-lg bg-cyber-card space-y-4">
+          <div class="flex items-center space-x-3 border-b border-cyber-border/80 pb-3">
+            <div class="w-8 h-8 rounded bg-emerald-950/60 border border-emerald-400/30 flex items-center justify-center text-emerald-300">
+              <i class="fa-solid fa-server text-sm"></i>
+            </div>
+            <div>
+              <h3 class="font-mono text-sm font-bold text-white">Backend & Cloud</h3>
+              <div class="font-mono text-[10px] text-slate-400">SERVER // RELAY STACK</div>
+            </div>
+          </div>
+
+          <!-- Skill Telemetry Meters -->
+          <div class="space-y-3 font-mono text-xs">
+            <div>
+              <div class="flex justify-between text-slate-300 mb-1">
+                <span>NODE.JS // EXPRESS</span>
+                <span class="text-emerald-400">EXP: CORE</span>
+              </div>
+              <div class="w-full bg-cyber-panel h-1.5 rounded-full overflow-hidden">
+                <div class="bg-emerald-400 h-full rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-slate-300 mb-1">
+                <span>GOOGLE APPS SCRIPT / AUTOMATION</span>
+                <span class="text-emerald-400">EXP: EXTENSIVE</span>
+              </div>
+              <div class="w-full bg-cyber-panel h-1.5 rounded-full overflow-hidden">
+                <div class="bg-emerald-400 h-full rounded-full" style="width: 92%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-slate-300 mb-1">
+                <span>REST & DECENTRALIZED PROTOCOLS</span>
+                <span class="text-emerald-400">EXP: TIGHTLY COUPLED</span>
+              </div>
+              <div class="w-full bg-cyber-panel h-1.5 rounded-full overflow-hidden">
+                <div class="bg-emerald-400 h-full rounded-full" style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="pt-2 flex flex-wrap gap-1 font-mono text-[10px] text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-cyber-panel border border-cyber-border">Serverless</span>
+            <span class="px-2 py-0.5 rounded bg-cyber-panel border border-cyber-border">REST APIs</span>
+            <span class="px-2 py-0.5 rounded bg-cyber-panel border border-cyber-border">Relational DB</span>
+          </div>
+        </div>
+
+        <!-- Matrix 3: Core & Tooling -->
+        <div class="hud-border p-5 rounded-lg bg-cyber-card space-y-4">
+          <div class="flex items-center space-x-3 border-b border-cyber-border/80 pb-3">
+            <div class="w-8 h-8 rounded bg-purple-950/60 border border-purple-400/30 flex items-center justify-center text-purple-300">
+              <i class="fa-solid fa-microchip text-sm"></i>
+            </div>
+            <div>
+              <h3 class="font-mono text-sm font-bold text-white">Core & Tooling</h3>
+              <div class="font-mono text-[10px] text-slate-400">SYSTEMS COMPUTING</div>
+            </div>
+          </div>
+
+          <!-- Skill Telemetry Meters -->
+          <div class="space-y-3 font-mono text-xs">
+            <div>
+              <div class="flex justify-between text-slate-300 mb-1">
+                <span>C++ / COMPUTING FOUNDATIONS</span>
+                <span class="text-purple-400">EXP: KERNEL LEVEL</span>
+              </div>
+              <div class="w-full bg-cyber-panel h-1.5 rounded-full overflow-hidden">
+                <div class="bg-purple-400 h-full rounded-full" style="width: 88%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-slate-300 mb-1">
+                <span>PYTHON // SCRIPTING</span>
+                <span class="text-purple-400">EXP: HIGH</span>
+              </div>
+              <div class="w-full bg-cyber-panel h-1.5 rounded-full overflow-hidden">
+                <div class="bg-purple-400 h-full rounded-full" style="width: 84%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-slate-300 mb-1">
+                <span>GIT / CI-CD / FULL PIPELINES</span>
+                <span class="text-purple-400">EXP: HIGH (2x SHIPS)</span>
+              </div>
+              <div class="w-full bg-cyber-panel h-1.5 rounded-full overflow-hidden">
+                <div class="bg-purple-400 h-full rounded-full" style="width: 95%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="pt-2 flex flex-wrap gap-1 font-mono text-[10px] text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-cyber-panel border border-cyber-border">System Arch</span>
+            <span class="px-2 py-0.5 rounded bg-cyber-panel border border-cyber-border">Data Structures</span>
+            <span class="px-2 py-0.5 rounded bg-cyber-panel border border-cyber-border">OOP</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="connect" class="space-y-6 pt-4">
+      
+      <div class="hud-border hud-bracket p-6 sm:p-8 rounded-xl bg-gradient-to-b from-cyber-card to-cyber-panel">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          
+          <div class="space-y-2 max-w-xl">
+            <div class="font-mono text-xs text-cyan-400 tracking-wider flex items-center gap-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+              // LOW FREQUENCY UPLINK
+            </div>
+            <h2 class="font-display font-bold text-2xl sm:text-3xl text-white tracking-tight uppercase">
+              INITIALIZE LINK // SECURE NODE
+            </h2>
+            <p class="font-sans text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Open for software engineering roles, high-impact product architecture, Web3 developments, 
+              and unconventional open-source engineering ventures.
+            </p>
+          </div>
+
+          <!-- External Quick Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="https://github.com/darkcheftar" target="_blank" rel="noopener noreferrer" 
+              class="px-4 py-2.5 rounded font-mono text-xs font-semibold bg-cyber-card hover:bg-cyan-950/50 border border-cyber-border hover:border-cyan-400 text-slate-200 hover:text-cyan-300 transition-all flex items-center gap-2" onclick="playBeep(650, 0.05)">
+              <i class="fa-brands fa-github text-sm"></i>
+              <span>GITHUB</span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/mallidi-tarun-reddy/" target="_blank" rel="noopener noreferrer" 
+              class="px-4 py-2.5 rounded font-mono text-xs font-semibold bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-400 text-cyan-300 transition-all flex items-center gap-2 hover:neon-glow-cyan" onclick="playBeep(800, 0.05)">
+              <i class="fa-brands fa-linkedin text-sm"></i>
+              <span>LINKEDIN</span>
+            </a>
+
+            <a href="https://x.com/darkcheftar" target="_blank" rel="noopener noreferrer" 
+              class="px-4 py-2.5 rounded font-mono text-xs font-semibold bg-cyber-card hover:bg-cyan-950/50 border border-cyber-border hover:border-cyan-400 text-slate-200 hover:text-cyan-300 transition-all flex items-center gap-2" onclick="playBeep(720, 0.05)">
+              <i class="fa-brands fa-x-twitter text-sm"></i>
+              <span>X / TWITTER</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Quick Message Transmission Module inside HUD -->
+        <div class="mt-8 pt-6 border-t border-cyber-border/80">
+          <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4 max-w-2xl">
+            <div class="font-mono text-xs text-slate-400 flex items-center justify-between">
+              <span>TRANSMIT PACKET DIRECTLY TO MTR TERMINAL</span>
+              <span id="transmit-status" class="text-cyan-400">READY</span>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input type="text" id="sender-callsign" required placeholder="Your Callsign / Name" 
+                class="px-3.5 py-2 rounded bg-cyber-panel border border-cyber-border text-white text-xs font-mono focus:outline-none focus:border-cyan-400 placeholder:text-slate-600">
+              <input type="email" id="sender-signal" required placeholder="Signal / Email Address" 
+                class="px-3.5 py-2 rounded bg-cyber-panel border border-cyber-border text-white text-xs font-mono focus:outline-none focus:border-cyan-400 placeholder:text-slate-600">
+            </div>
+
+            <textarea id="sender-payload" rows="3" required placeholder="Payload Message details..." 
+              class="w-full px-3.5 py-2 rounded bg-cyber-panel border border-cyber-border text-white text-xs font-mono focus:outline-none focus:border-cyan-400 placeholder:text-slate-600"></textarea>
+
+            <button type="submit" class="px-5 py-2.5 rounded font-mono text-xs font-bold bg-cyan-400 hover:bg-cyan-300 text-cyber-black transition-all flex items-center gap-2">
+              <i class="fa-solid fa-paper-plane"></i>
+              SEND DISPATCH
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="border-t border-cyber-border bg-cyber-black/95 py-6 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-mono text-[11px] text-slate-500 space-y-2">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+        <div>
+          <span class="text-slate-300 font-semibold">MTR.OS</span> v4.0.2 RELEASE
+          <span class="mx-2 text-slate-700">|</span>
+          © 2026 MALLIDI TARUN REDDY <span class="text-cyan-500">// ALL SUBSYSTEMS OPERATIONAL</span>
+        </div>
+        <div class="flex items-center space-x-4 text-slate-400">
+          <span>[GITHUB: /darkcheftar]</span>
+          <span>[X: @darkcheftar]</span>
+          <span class="text-cyan-400">[TELEMETRY: LIVE]</span>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center justify-between text-[10px] text-slate-600 pt-2 border-t border-slate-900 gap-2">
+        <span>LOC: 18.5204° N, 73.8567° E</span>
+        <span>GRID: QUAD-PUN-04 // LATENCY: <span class="text-emerald-500">18MS</span></span>
+        <span>CIPHER: SHA-256 SECURED</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 pointer-events-none space-y-2"></div>
+
+  <script>
+    // Audio FX Controller via Tone.js
+    let audioEnabled = false;
+    let synth = null;
+
+    function toggleAudio() {
+      audioEnabled = !audioEnabled;
+      const label = document.getElementById('audio-label');
+      const icon = document.getElementById('audio-icon');
+      
+      if (audioEnabled) {
+        if (typeof Tone !== 'undefined') {
+          Tone.start();
+          if (!synth) {
+            synth = new Tone.Synth({
+              oscillator: { type: 'sine' },
+              envelope: { attack: 0.005, decay: 0.1, sustain: 0, release: 0.1 }
+            }).toDestination();
+            synth.volume.value = -12;
+          }
         }
-        if (offset < 300) {
-          scrolBtn.style.display = "none";
+        label.textContent = 'SFX: ON';
+        label.classList.add('text-cyan-300');
+        icon.className = 'fa-solid fa-volume-high text-cyan-400';
+        playBeep(980, 0.08);
+        showToast("AUDIO TELEMETRY ENABLED", "success");
+      } else {
+        label.textContent = 'SFX: OFF';
+        label.classList.remove('text-cyan-300');
+        icon.className = 'fa-solid fa-volume-xmark text-slate-500';
+        showToast("AUDIO TELEMETRY MUTED", "info");
+      }
+    }
+
+    function playBeep(freq = 800, dur = 0.05) {
+      if (audioEnabled && synth) {
+        try {
+          synth.triggerAttackRelease(freq, dur);
+        } catch (e) {
+          console.error(e);
         }
+      }
+    }
+
+    // Interactive Terminal Logic
+    const cliHistory = document.getElementById('cli-history');
+    const cliInput = document.getElementById('cli-input');
+    const terminalBody = document.getElementById('terminal-body');
+
+    const COMMANDS = {
+      help: () => `AVAILABLE OPERATIONAL DIRECTIVES:
+- <span class="text-cyan-300">whoami</span>: Display engineer background
+- <span class="text-cyan-300">skills</span>: List technical core dialect
+- <span class="text-cyan-300">projects</span>: View primary deployed systems
+- <span class="text-cyan-300">contact</span>: Retrieve contact links and node addresses
+- <span class="text-cyan-300">clear</span>: Clear terminal buffer
+- <span class="text-cyan-300">matrix</span>: Jump to capability matrix
+- <span class="text-cyan-300">ping</span>: Measure uplink latency`,
+      whoami: () => `MALLIDI TARUN REDDY (@darkcheftar)
+Full-Stack Software Engineer & Creative Technologist.
+Focused on resilient, highly responsive web systems, Web3/DeFi architecture, and playful interactive experiences.`,
+      skills: () => `CORE STACK:
+[Frontend]: React, Next.js, TypeScript, Tailwind CSS, WebGL/Canvas
+[Backend]: Node.js, Express, Google Apps Script, Python, REST
+[Systems]: C++, Git, Docker, CI/CD pipelines, System Design`,
+      projects: () => `FEATURED ARTIFACTS:
+1. Bomb Finance Dashboard (Web3/DeFi Analytics telemetry)
+2. Serverless Email Relay Matrix (Zero-backend SMTP dispatch)
+3. Mario Game Presentation Engine (Canvas 2D slides loop)
+4. Flutter Algorithmic Pair Engine (Mobile reactive state)`,
+      contact: () => `SECURE LINKS:
+- GitHub: https://github.com/darkcheftar
+- LinkedIn: https://www.linkedin.com/in/mallidi-tarun-reddy/
+- Twitter/X: https://x.com/darkcheftar`,
+      matrix: () => {
+        const matrixEl = document.getElementById('matrix');
+        if (matrixEl) matrixEl.scrollIntoView({ behavior: 'smooth' });
+        return `Transferred focus to Tech Matrix.`;
+      },
+      ping: () => {
+        const lat = Math.floor(Math.random() * 8) + 14;
+        return `UPLINK ROUND-TRIP: ${lat}ms [STATUS: OPTIMAL]`;
+      },
+      clear: () => {
+        cliHistory.innerHTML = '';
+        return null;
+      }
+    };
+
+    function executeCommand(event) {
+      event.preventDefault();
+      const rawCmd = cliInput.value.trim();
+      if (!rawCmd) return;
+      
+      const cmd = rawCmd.toLowerCase();
+      playBeep(740, 0.05);
+
+      // Append user line
+      const userLine = document.createElement('div');
+      userLine.innerHTML = `<span class="text-cyan-400 font-semibold">darkcheftar@mtr-node</span>:<span class="text-slate-400">~$</span> <span class="text-white">${escapeHtml(rawCmd)}</span>`;
+      cliHistory.appendChild(userLine);
+
+      // Handle command
+      if (cmd in COMMANDS) {
+        const output = COMMANDS[cmd]();
+        if (output) {
+          const respLine = document.createElement('div');
+          respLine.className = 'text-slate-300 pl-3 leading-relaxed whitespace-pre-wrap';
+          respLine.innerHTML = output;
+          cliHistory.appendChild(respLine);
+        }
+      } else {
+        const errLine = document.createElement('div');
+        errLine.className = 'text-red-400 pl-3';
+        errLine.textContent = `zsh: command not found: ${rawCmd}. Type 'help' for directory.`;
+        cliHistory.appendChild(errLine);
+      }
+
+      cliInput.value = '';
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    // Download Resume / Intel Trigger
+    function handleDownloadIntel() {
+      playBeep(900, 0.08);
+      showToast("FETCHING INTEL DOSSIER (RESUME)...", "info");
+      setTimeout(() => {
+        window.open('https://www.linkedin.com/in/mallidi-tarun-reddy/', '_blank');
+      }, 700);
+    }
+
+    // Contact form dispatch simulated via secure node
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const callsign = document.getElementById('sender-callsign').value;
+      const signal = document.getElementById('sender-signal').value;
+      const payload = document.getElementById('sender-payload').value;
+      const statusLbl = document.getElementById('transmit-status');
+
+      playBeep(1100, 0.1);
+      statusLbl.textContent = 'TRANSMITTING...';
+      statusLbl.className = 'text-amber-400 font-bold';
+
+      setTimeout(() => {
+        statusLbl.textContent = 'PACKET ACKNOWLEDGED';
+        statusLbl.className = 'text-emerald-400 font-bold';
+        showToast(`PACKET DISPATCHED FROM ${callsign.toUpperCase()}`, "success");
+        e.target.reset();
+
+        setTimeout(() => {
+          statusLbl.textContent = 'READY';
+          statusLbl.className = 'text-cyan-400';
+        }, 3000);
+      }, 800);
+    }
+
+    // UI Toast system
+    function showToast(message, type = "info") {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      const borderColor = type === 'success' ? 'border-emerald-500 text-emerald-300' : 'border-cyan-500 text-cyan-300';
+      toast.className = `hud-border p-3 rounded bg-cyber-card/95 border ${borderColor} shadow-xl font-mono text-xs flex items-center space-x-2 pointer-events-auto transform transition-all duration-300 translate-y-2 opacity-0`;
+      
+      const icon = type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-satellite-dish text-cyan-400';
+      toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
+      
+      container.appendChild(toast);
+      
+      // Animate in
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
       });
 
-      //remove that #s in the link
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
+      // Auto dismiss
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
 
-          document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
-        });
-      });
-    </script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
-  </body>
+    // Dynamic latency flutter to simulate live telemetry
+    setInterval(() => {
+      const pingEl = document.getElementById('ping-display');
+      if (pingEl) {
+        const ms = Math.floor(Math.random() * 6) + 16;
+        pingEl.textContent = `${ms}ms`;
+      }
+    }, 4000);
+  </script>
+
+</body>
 </html>
